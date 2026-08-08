@@ -179,6 +179,84 @@
   .rule-text-item:first-child { border-top: none; }
   .rule-text-num { width: 22px; height: 22px; border-radius: 50%; background: var(--full-bg); color: var(--full); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
+  .notice-box {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 3px 16px rgba(107,45,107,.10);
+  }
+  .notice-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+    transition: background .15s;
+  }
+  .notice-header:hover { background: linear-gradient(135deg, var(--purple-dark), var(--purple-light)); }
+  .notice-header-left { display: flex; align-items: center; gap: 10px; }
+  .notice-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .notice-titles { display: flex; flex-direction: column; gap: 2px; }
+  .notice-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #e8c97a;
+  }
+  .notice-subtitle { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.2; }
+  .notice-box .chevron { color: rgba(255,255,255,.7); transition: transform .22s; flex-shrink: 0; }
+  .notice-box.open .chevron { transform: rotate(180deg); }
+  .notice-body { display: none; padding: 18px 20px; }
+  .notice-box.open .notice-body { display: block; }
+  .notice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .notice-card {
+    background: var(--purple-bg);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .notice-card-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .notice-card p { font-size: 12.5px; line-height: 1.5; color: var(--gray-700); }
+  .notice-card p strong { color: var(--purple-dark); }
+  .notice-highlight {
+    font-size: 17px;
+    font-weight: 800;
+    margin-top: 4px;
+    color: var(--purple-dark);
+  }
+  @media (max-width: 600px) {
+    .notice-grid { grid-template-columns: 1fr; }
+    .notice-header { padding: 12px 16px; }
+    .notice-body { padding: 14px 16px; }
+  }
+
   @media (max-width: 600px) {
     header { padding: 16px; }
     .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -261,6 +339,42 @@
 <main>
   <div id="antecipacao" class="panel active">
     <p class="panel-intro">Antecipação de 1ª parcela ou total, por operadora e segmento.</p>
+
+    <div class="notice-box open" id="notice-antecipacao">
+      <div class="notice-header" onclick="toggleNotice(this.parentElement)">
+        <div class="notice-header-left">
+          <div class="notice-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86l-8.18 14.18A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-2.96L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          </div>
+          <div class="notice-titles">
+            <span class="notice-title">Comunicado Importante</span>
+            <span class="notice-subtitle">Regras de pagamento de antecipação</span>
+          </div>
+        </div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="notice-body">
+        <div class="notice-grid">
+          <div class="notice-card">
+            <div class="notice-card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Devolução de 1ª parcela
+            </div>
+            <p>Prazo de devolução:</p>
+            <div class="notice-highlight">48 horas</div>
+          </div>
+          <div class="notice-card">
+            <div class="notice-card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.4"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Antecipação total de comissão
+            </div>
+            <p><strong>Segunda a sexta</strong>, até as 16h &rarr; pagamento na <strong>terça-feira</strong>.</p>
+            <p style="margin-top:6px;"><strong>Sexta após 16h</strong> até <strong>segunda 12h</strong> &rarr; pagamento na <strong>quarta-feira</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="sections-antecipacao">
       
 <div class="section open" data-name="PME">
@@ -411,6 +525,10 @@
 <script>
 function toggleSection(headerEl) {
   headerEl.parentElement.classList.toggle('open');
+}
+
+function toggleNotice(boxEl) {
+  boxEl.classList.toggle('open');
 }
 
 function showPanel(id, btn) {
