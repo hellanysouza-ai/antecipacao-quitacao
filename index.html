@@ -251,10 +251,26 @@
     margin-top: 4px;
     color: var(--purple-dark);
   }
+  .notice-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 18px;
+    background: var(--purple);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background .15s, transform .15s;
+  }
+  .notice-cta:hover { background: var(--purple-dark); transform: translateY(-1px); }
   @media (max-width: 600px) {
     .notice-grid { grid-template-columns: 1fr; }
     .notice-header { padding: 12px 16px; }
     .notice-body { padding: 14px 16px; }
+    .notice-cta { width: 100%; justify-content: center; }
   }
 
   @media (max-width: 600px) {
@@ -372,6 +388,10 @@
             <p style="margin-top:6px;"><strong>Sexta após 16h</strong> até <strong>segunda 12h</strong> &rarr; pagamento na <strong>quarta-feira</strong>.</p>
           </div>
         </div>
+        <a class="notice-cta" href="https://client-affinity-pay-edb27c36502e.herokuapp.com/" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Enviar solicitação de antecipação
+        </a>
       </div>
     </div>
 
